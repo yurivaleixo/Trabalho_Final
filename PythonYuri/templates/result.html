@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificador ML</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='result-style.css') }}">
+</head>
+<body>
+    <div class="container mt-5 result-container">
+        <h2 class="text-center">Classifier Results</h2>
+        <p>Classifier: {{ classifier }}</p>
+        <p>Accuracy: {{ accuracy }}</p>
+        <p>Macro Average F1-Score: {{ f1_score }}</p>
+        <div class="mt-4">
+            <h4>Confusion Matrix</h4>
+            <img src="data:image/png;base64,{{ img_data }}" alt="Confusion Matrix" class="img-fluid">
+        </div>
+        
+        <!-- Adicionando um botão de download -->
+        <form action="/download_results" method="post">
+            <input type="hidden" name="csv_path" value="{{ csv_path }}">
+            <button type="submit" class="btn btn-success btn-block mt-3">Download Results (CSV)</button>
+        </form>
+
+        <a href="/" class="btn btn-primary btn-back btn-block mt-3">Back to Home</a>
+    </div>
+</body>
+</html>
